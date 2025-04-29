@@ -1,0 +1,56 @@
+1. Insert Multiple Degree Records
+
+db.degrees.insertMany([
+  {
+    "name": "BIT",
+    "duration": 3
+  },
+  {
+    "name": "Bsc in Applied Mathematics",
+    "duration": 3
+  },
+  {
+    "name": "Bsc in Environmental Science",
+    "duration": 4
+  },
+  {
+    "name": "Bsc in Computer Science",
+    "duration": 4
+  }
+])
+
+2. Delete a Single Degree
+
+db.degrees.deleteOne({ _id: ObjectId('6810919213eb87b62ed01ffc') })
+
+3. Use Projection to View Specific Fields
+
+db.degrees.find().projection(['name', 'duration'])
+
+4. Display Results Nicely (Pretty)
+
+db.degrees.find({}, { name: 1, _id: 0 }).pretty()
+
+5. Delete Multiple Degrees
+
+db.degrees.deleteMany({ duration: { $lt: 4 } })
+
+6. Update One Degree Record
+
+db.degrees.updateOne(
+  { _id: ObjectId('6810919213eb87b62ed01ffb') },
+  { $set: { name: 'Bachelor in IT', duration: 3 } }
+)
+
+7. Update Skills Array in Students Collection
+db.Students.updateOne(
+  { regNo: '2021IT001' },
+  { $push: { skills: 'PHP' } }
+)
+
+8. Update Many Degrees
+
+db.degrees.updateMany(
+  { duration: { $gte: 4 } },
+  { $inc: { duration: 1 } }
+)
